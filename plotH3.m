@@ -5,8 +5,7 @@ function plotH3(H,label,f,length,width)
     figure(f);
     
     % hack for airfame display: rotate around x by 180° first..
-    Hr = homogeneous(rodriguez(1,pi),[0 0 0]');
-    H = Hr * H;
+    H = [eye(3),[0 0 0]'; 0 0 0 1];
     
     p0 = H(1:4,4);
     px = H*[length 0 0 1]';
@@ -21,4 +20,5 @@ function plotH3(H,label,f,length,width)
     label_distance_factor = 0.3;
     text(p0(1)-length*label_distance_factor,p0(2)-length*label_distance_factor,p0(3)-length*label_distance_factor,label);
     
+    grid;
 end
