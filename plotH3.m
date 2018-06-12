@@ -4,7 +4,8 @@
 function plotH3(H,label,f,length,width)
     figure(f);
     
-    % hack for airfame display: rotate around x by 180Â° first..
+    % hack for airfame display: rotate around x by 180° first..
+    % Lior: removed this "hack"
     H = [eye(3),[0 0 0]'; 0 0 0 1];
     
     p0 = H(1:4,4);
