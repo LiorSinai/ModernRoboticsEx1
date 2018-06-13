@@ -1,7 +1,7 @@
 close all
 % Initial variables
 L=[5 12.5 12.5];
-q=[pi/2 pi/4 0];
+q=[0 1.4 -1.4];
 
 %omega=[5 1 2]'; v=[0.1 0.2 0.3]';
 %T=[omega;v];
@@ -29,7 +29,7 @@ set(gca,'DataAspectRatio',[1 1 1],...
         'PlotBoxAspectRatio',[1 1 1])
 
 %Moved configuration
-[H1_0, H2_0, H3_0] = getHmatrices(q, L);
+[H1_0, H2_0, H3_0] = getHmatrices_1(q, L);
 P1=H1_0*P0; 
 P2=H2_0*P0; 
 P3=H3_0*P0; 
@@ -39,4 +39,18 @@ x=points2(1,:);
 y=points2(2,:);
 z=points2(3,:);
 hold on
-plot3(x,y,z,'-xr','MarkerFaceColor',[1 0 0])
+plot3(x,y,z,'-*r','MarkerFaceColor',[1 0 0])
+%% Test Jacobian
+J             = getJacobian(q,L);
+Twist0_0_n    = zeros(6,length(q));
+speeds        = [0 sqrt(2) sqrt(2)]';%Set speeds(be carefull if you are not changing a position velocity is 0)
+%Solve for the twist
+%Twist0_0_n(:,1) = getJacobian(q(1)  ,L(1)  )*;
+%Twist0_0_n(:,2) = getJacobian(q(1:2),L(1:2))*;
+Twist0_0_n(:,3) = J*speeds;
+%omegas
+m = 10;
+quiver3(x(4),y(4),z(4),m*Twist0_0_n(1,3),m*Twist0_0_n(2,3),m*Twist0_0_n(3,3),'g');
+%velocities
+n = 1;%scaling for viewing purposes
+quiver3(x(4),y(4),z(4),n*Twist0_0_n(4,3),n*Twist0_0_n(5,3),n*Twist0_0_n(6,3),'r');
