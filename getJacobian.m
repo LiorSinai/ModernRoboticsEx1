@@ -13,13 +13,13 @@ r1              = [0 0 0];
 %twists must be represented with respect to the last link
 unit_twist1_0   = [omega1 cross(r1,omega1)]';
 omega2          = [1 0 0];
-r2              = [0 0 robot_params(1)];
+r2              = [0 0 L(1)];
 unit_twist2_1   = [omega2 cross(r2,omega2)]';
 omega3          = [1 0 0];
-r3              = [0 0 robot_params(2)];
+r3              = [0 0 L(2)];
 unit_twist3_2   = [omega3 cross(r3,omega3)]';
 
-J(:,1) = adjoint_lie(H0_0)*unit_twist1_0;
-J(:,2) = adjoint_lie(H0_1)*unit_twist2_1;
-J(:,3) = adjoint_lie(H0_2)*unit_twist3_2;
+J(:,1) = Adjoint(H0_0)*unit_twist1_0;
+J(:,2) = Adjoint(H0_1)*unit_twist2_1;
+J(:,3) = Adjoint(H0_2)*unit_twist3_2;
 end
