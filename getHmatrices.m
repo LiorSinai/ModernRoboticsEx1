@@ -16,9 +16,9 @@ function [H0_1, H0_2, H0_3] = getHmatrices(q, L)
     T320 = [omega_unit; cross(r,omega_unit)];
    
     %Assume the arm is pointing straight up
-    H1_0_0=[eye(3) [0 0 L(1)]'           ; 0 0 0 1];
-    H2_0_0=[eye(3) [0 0 L(1)+L(2)]'      ; 0 0 0 1];
-    H3_0_0=[eye(3) [0 0 L(1)+L(2)+L(3)]' ; 0 0 0 1];
+    H0_1_0=[eye(3) [0 0 L(1)]'           ; 0 0 0 1];
+    H0_2_0=[eye(3) [0 0 L(1)+L(2)]'      ; 0 0 0 1];
+    H0_3_0=[eye(3) [0 0 L(1)+L(2)+L(3)]' ; 0 0 0 1];
     
    % Calculate the H matrices
     H0_1 = expTwist(T100,q(1))*H1_0_0;
