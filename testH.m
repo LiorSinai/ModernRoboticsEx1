@@ -1,7 +1,7 @@
 close all
 % Initial variables
 L=[5 12.5 12.5];
-q=[0 1.4 -1.4];
+q=[pi/4 pi/4 -3*pi/4];
 
 %omega=[5 1 2]'; v=[0.1 0.2 0.3]';
 %T=[omega;v];
@@ -11,13 +11,13 @@ q=[0 1.4 -1.4];
 %Initial configuration
 P0=[0 0 0 1]';
 
-H1_0_0=[eye(3) [0 0 L(1)]'           ; 0 0 0 1];
-H2_0_0=[eye(3) [0 0 L(1)+L(2)]'      ; 0 0 0 1];
-H3_0_0=[eye(3) [0 0 L(1)+L(2)+L(3)]' ; 0 0 0 1];
+H0_1_0=[eye(3) [0 0 L(1)]'           ; 0 0 0 1];
+H0_2_0=[eye(3) [0 0 L(1)+L(2)]'      ; 0 0 0 1];
+H0_3_0=[eye(3) [0 0 L(1)+L(2)+L(3)]' ; 0 0 0 1];
 
-P1=H1_0_0*P0; 
-P2=H2_0_0*P0; 
-P3=H3_0_0*P0; 
+P1=H0_1_0*P0; 
+P2=H0_2_0*P0; 
+P3=H0_3_0*P0; 
 
 points=[P0 P1 P2 P3];
 x=points(1,:);
@@ -29,10 +29,10 @@ set(gca,'DataAspectRatio',[1 1 1],...
         'PlotBoxAspectRatio',[1 1 1])
 
 %Moved configuration
-[H1_0, H2_0, H3_0] = getHmatrices_1(q, L);
-P1=H1_0*P0; 
-P2=H2_0*P0; 
-P3=H3_0*P0; 
+[H0_1, H0_2, H0_3] = getHmatrices(q, L);
+P1=H0_1*P0; 
+P2=H0_2*P0; 
+P3=H0_3*P0; 
 
 points2=[P0 P1 P2 P3];
 x=points2(1,:);
