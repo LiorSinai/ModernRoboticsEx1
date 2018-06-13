@@ -6,7 +6,7 @@ function J = getJacobian(q,L)
     J = zeros(6,length(q));
     %use get H matrices
     H0_0 = eye(4);
-    [H0_1, H0_2, H0_3]=getHmatrices(q,L);
+    [H1_0, H2_0, H3_0]=getHmatrices(q,L);
     %all norm(omega) = 1;MUST REQUIREMENT
     omega1          = [0 0 1];
     r1              = [0 0 0];
@@ -20,6 +20,6 @@ function J = getJacobian(q,L)
     unit_twist3_2   = [omega3 cross(r3,omega3)]';
 
     J(:,1) = Adjoint(H0_0)*unit_twist1_0;
-    J(:,2) = Adjoint(H0_1)*unit_twist2_1;
-    J(:,3) = Adjoint(H0_2)*unit_twist3_2;
+    J(:,2) = Adjoint(inv(H1_0))*unit_twist2_1;
+    J(:,3) = Adjoint(inv(H2_0))*unit_twist3_2;
 end
