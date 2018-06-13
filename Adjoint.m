@@ -7,6 +7,6 @@ function Adj = Adjoint(H)
     R=H(1:3,1:3);
     p=H(1:3,4);
     
-    Adj=[R zeros(3,3); tilde(p)*R R]
+    Adj=[R zeros(3,3); tilde(p)*R R];
 
 end
