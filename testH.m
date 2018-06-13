@@ -39,4 +39,18 @@ x=points2(1,:);
 y=points2(2,:);
 z=points2(3,:);
 hold on
-plot3(x,y,z,'-xr','MarkerFaceColor',[1 0 0])
+plot3(x,y,z,'-*r','MarkerFaceColor',[1 0 0])
+%% Test Jacobian
+J             = getJacobian(q,L);
+Twist0_0_n    = zeros(6,length(q));
+speeds        = [0 sqrt(2) sqrt(2)]';%Set speeds(be carefull if you are not changing a position velocity is 0)
+%Solve for the twist
+%Twist0_0_n(:,1) = getJacobian(q(1)  ,L(1)  )*;
+%Twist0_0_n(:,2) = getJacobian(q(1:2),L(1:2))*;
+Twist0_0_n(:,3) = J*speeds;
+%omegas
+m = 10;
+quiver3(x(4),y(4),z(4),m*Twist0_0_n(1,3),m*Twist0_0_n(2,3),m*Twist0_0_n(3,3),'g');
+%velocities
+n = 1;%scaling for viewing purposes
+quiver3(x(4),y(4),z(4),n*Twist0_0_n(4,3),n*Twist0_0_n(5,3),n*Twist0_0_n(6,3),'r');
