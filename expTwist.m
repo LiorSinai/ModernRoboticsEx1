@@ -9,7 +9,9 @@ function H= expTwist(T,q)
     if norm(omega)~=0
         R=rodriguez(omega,q) ;
         %omega=q*omega;
-        %v=q*v;
+        %v=q*v; 
+        %H=[R ((eye(3)-R)*(cross(omega,v))+q*omega'*omega)/norm(omega)^2; 0 0 0 1];
+        % or can subtitute q directly into the formula:
         H=[R ((eye(3)-R)*(cross(omega,v))+q*omega'*v*omega)/norm(omega)^2; 0 0 0 1];
         %note: invalid if norm(omega)=0
     else
