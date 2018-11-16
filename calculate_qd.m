@@ -2,7 +2,10 @@
 %coordinates
 %Lior Sinai and Juan Pablo Avelar Luna 
 %13 of june 2018
-%Calculate the 
+%Calculate the
+
+% Add comment 2
+
 function qdot = calculate_qd(q, setpoint, L)
 
 [H0_1, H0_2, H0_3]=getHmatrices(q,L);

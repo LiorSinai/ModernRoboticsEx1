@@ -2,6 +2,8 @@
 %%% 10 June 2018
 %%% Calculate the Adjoint matrix of a homogenous H matrix
 
+% add comment 1
+
 function Adj = Adjoint(H)
     
     R=H(1:3,1:3);
