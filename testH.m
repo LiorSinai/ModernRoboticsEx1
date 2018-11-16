@@ -1,7 +1,9 @@
 close all
 % Initial variables
 L=[5 12.5 12.5];
-q=[pi/4 pi/4 -3*pi/4];
+%q=[1 0.1 -2];
+%q=[0.0144 0.41 2.3]';
+q=[0 -pi/2 1]
 
 %omega=[5 1 2]'; v=[0.1 0.2 0.3]';
 %T=[omega;v];
@@ -41,6 +43,7 @@ z=points2(3,:);
 hold on
 plot3(x,y,z,'-*r','MarkerFaceColor',[1 0 0])
 %% Test Jacobian
+%{
 J             = getJacobian(q,L);
 Twist0_0_n    = zeros(6,length(q));
 speeds        = [0 sqrt(2) sqrt(2)]';%Set speeds(be carefull if you are not changing a position velocity is 0)
@@ -54,3 +57,4 @@ quiver3(x(4),y(4),z(4),m*Twist0_0_n(1,3),m*Twist0_0_n(2,3),m*Twist0_0_n(3,3),'g'
 %velocities
 n = 1;%scaling for viewing purposes
 quiver3(x(4),y(4),z(4),n*Twist0_0_n(4,3),n*Twist0_0_n(5,3),n*Twist0_0_n(6,3),'r');
+%}
